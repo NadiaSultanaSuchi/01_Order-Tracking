@@ -1,75 +1,77 @@
-# React + TypeScript + Vite
+# Order Tracking Screen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, mobile-first order tracking screen for an e-commerce app, built with **React + TypeScript + Vite**. It replaces a plain 4-step status view with a clearer, more informative tracking experience and handles edge cases (delayed orders, delivered-but-not-received, and tracking-not-available-yet) gracefully instead of showing a broken or empty screen.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Clear visual delivery timeline (Processing → Shipped → Out for Delivery → Delivered)
+- Current order status shown at a glance, with a contextual banner for problem states
+- Estimated delivery date/time
+- Order/product summary card
+- Contact Support action, plus a "Report an issue" flow for delivered-but-not-received orders
+- Loading, error, and empty states handled explicitly
+- Responsive layout, designed for ~360–430px mobile widths
 
-## React Compiler
+## Handles all three required situations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The same UI adapts to three scenarios using mock data:
 
-## Expanding the ESLint configuration
+1. **Delayed order** — estimated delivery time has passed; shows a delay banner and support action
+2. **Delivered but not received** — status says delivered, but the customer can report otherwise
+3. **Tracking not available yet** — order exists, but no tracking steps yet; shows a proper empty state instead of a blank/broken screen
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React 19 + TypeScript
+- Vite (build tool / dev server)
+- Plain CSS (no external UI framework)
+- Mock/static data only — no backend required
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Setup & Run
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the URL shown in the terminal (usually `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Viewing different order states
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+By default the app shows the **delayed** order scenario. You can preview the other states by adding a `scenario` query parameter to the URL:
 
+| Scenario | URL |
+|---|---|
+| Delayed order | `http://localhost:5173/?scenario=delayed` |
+| Delivered but not received | `http://localhost:5173/?scenario=deliveredNotReceived` |
+| Tracking not available yet | `http://localhost:5173/?scenario=noTracking` |
+| Normal / on-time order | `http://localhost:5173/?scenario=normal` |
+
+The same pattern works on the deployed URL as well.
+
+## Build for production
+
+```bash
+npm run build
+npm run preview
 ```
+
+## Project Structure
+src/
+├── main.tsx # App entry point
+├── orderTracking.tsx # Main tracking screen (composes the components below)
+├── mockOrder.ts # Mock order data for all four scenarios
+├── orderTracking.css # Styles
+├── types/order.ts # TypeScript types for Order / TrackingStep
+└── components/
+├── timeline.tsx # Visual delivery timeline
+├── orderInfo.tsx # Product/order summary card
+├── issueBanner.tsx # Contextual banner for delayed/not-received states
+└── supportActions.tsx # Contact support / report issue actions
+
+## AI Tool Usage
+To explain the problem.
+## Live Demo & Repository
+
+- **Live URL:** _https://willowy-elf-ded21e.netlify.app
+- **GitHub Repository:** _https://github.com/NadiaSultanaSuchi/01_Order-Tracking
