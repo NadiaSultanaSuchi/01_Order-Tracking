@@ -17,8 +17,10 @@ export default function OrderTracking() {
         const fetchOrder = async () => {
             try {
                 setLoading(true)
-            
-                const data = await getOrder("delayed")
+
+                const params = new URLSearchParams(window.location.search)
+                const scenario = params.get("scenario") || "delayed"
+                const data = await getOrder(scenario as any)
                 setOrder(data)
                 setLoading(false)
             }
