@@ -1,0 +1,211 @@
+.trackingWrapper {
+    max-width: 430px;
+    min-width: 360px;
+    margin: 0 auto;
+    padding: 16px;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #1a1a1a;
+}
+
+.loadingText,
+.errorText {
+    text-align: center;
+    padding: 40px 16px;
+    color: #666;
+}
+
+.errorText {
+    color: #c0392b;
+}
+
+
+.issueBanner {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+}
+
+.delayedBanner {
+    background: #fff4e5;
+    border: 1px solid #ffb84d;
+}
+
+.notReceivedBanner {
+    background: #fde8e8;
+    border: 1px solid #f28b82;
+}
+
+.issueTitle {
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    font-size: 15px;
+}
+
+.issueMessage {
+    font-size: 13px;
+    color: #4a4a4a;
+    line-height: 1.4;
+}
+
+
+.orderCard {
+    display: flex;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 20px;
+}
+
+.productImg {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.orderDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.productName {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+}
+
+.qtyText,
+.priceText {
+    font-size: 12px;
+    color: #777;
+}
+
+.etaText {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+    color: #1a1a1a;
+}
+
+
+.timelineWrapper {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 20px 16px;
+    margin-bottom: 20px;
+}
+
+.timelineStep {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 22px;
+    position: relative;
+}
+
+.timelineStep:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 16px;
+    width: 2px;
+    height: calc(100% - 6px);
+    background: #e0e0e0;
+}
+
+.timelineStep.completed:not(:last-child)::before {
+    background: #2e7d32;
+}
+
+.stepDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.timelineStep.completed .stepDot {
+    background: #2e7d32;
+}
+
+.stepLabel {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    color: #999;
+}
+
+.timelineStep.completed .stepLabel {
+    color: #1a1a1a;
+}
+
+.stepTime {
+    font-size: 11px;
+    color: #999;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 30px 16px;
+}
+
+.emptyDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    margin: 0 auto 12px auto;
+}
+
+.emptyTitle {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 6px 0;
+}
+
+.emptySubText {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.4;
+}
+
+
+.supportWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.supportBtn,
+.reportBtn {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.supportBtn {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.reportBtn {
+    background: #fff;
+    color: #1a1a1a;
+    border: 1px solid #d0d0d0;
+}
+
+.reportedText {
+    text-align: center;
+    font-size: 12px;
+    color: #2e7d32;
+    padding: 6px 0;
+}
